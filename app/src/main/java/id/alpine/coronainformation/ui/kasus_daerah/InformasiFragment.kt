@@ -1,4 +1,4 @@
-package id.alpine.coronainformation.ui.`kasus daerah`
+package id.alpine.coronainformation.ui.kasus_daerah
 
 import android.os.Bundle
 import android.view.LayoutInflater

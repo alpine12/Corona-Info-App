@@ -1,4 +1,4 @@
-package id.alpine.coronainformation.ui.`kasus nasional`
+package id.alpine.coronainformation.ui.kasus_nasional
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

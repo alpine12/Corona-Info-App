@@ -7,12 +7,12 @@
 
     <fragment
         android:id="@+id/menu_kasus"
-        android:name="id.alpine.coronainformation.ui.kasus nasional.KasusFragment"
+        android:name="id.alpine.coronainformation.ui.kasus_nasional.KasusFragment"
         android:label="Kasus"
         tools:layout="@layout/fragment_kasus" />
     <fragment
         android:id="@+id/menu_informasi"
-        android:name="id.alpine.coronainformation.ui.kasus daerah.InformasiFragment"
+        android:name="id.alpine.coronainformation.ui.kasus_daerah.InformasiFragment"
         android:label="Informasi"
         tools:layout="@layout/fragment_informasi" />
     <fragment
