@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">CoronaInformation</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="informasi_terkini_virus_corona_di_indonesia">Informasi terkini virus corona di Indonesia</string>
+    <string name="pantau_covid_19_nindonesia">PANTAU COVID-19 \nINDONESIA</string>
+    <string name="berikut_infomarsi_covid_19_hari_ini">Berikut infomarsi COVID-19 saat ini</string>
+</resources>

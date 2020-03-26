@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottom_navigation"
+    app:startDestination="@id/menu_kasus">
+
+    <fragment
+        android:id="@+id/menu_kasus"
+        android:name="id.alpine.coronainformation.ui.kasus nasional.KasusFragment"
+        android:label="Kasus"
+        tools:layout="@layout/fragment_kasus" />
+    <fragment
+        android:id="@+id/menu_informasi"
+        android:name="id.alpine.coronainformation.ui.kasus daerah.InformasiFragment"
+        android:label="Informasi"
+        tools:layout="@layout/fragment_informasi" />
+    <fragment
+        android:id="@+id/menu_bantuan"
+        android:name="id.alpine.coronainformation.ui.informasi.BantuanFragment"
+        android:label="Bantuan"
+        tools:layout="@layout/fragment_bantuan" />
+    <fragment
+        android:id="@+id/menu_about"
+        android:name="id.alpine.coronainformation.ui.about.AboutFragment"
+        android:label="fragment_about"
+        tools:layout="@layout/fragment_about" />
+</navigation>

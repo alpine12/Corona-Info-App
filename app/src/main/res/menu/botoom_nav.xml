@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_kasus"
+        android:icon="@drawable/ic_nasional"
+        android:title="Nasional" />
+    <item
+        android:id="@+id/menu_informasi"
+        android:icon="@drawable/ic_informasi"
+        android:title="Daerah" />
+    <item
+        android:id="@+id/menu_bantuan"
+        android:icon="@drawable/ic_bantuan"
+        android:title="Bantuan" />
+    <item
+        android:id="@+id/menu_about"
+        android:icon="@drawable/ic_about"
+        android:title="About" />
+</menu>
