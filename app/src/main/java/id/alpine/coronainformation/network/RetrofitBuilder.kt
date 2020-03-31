@@ -28,7 +28,7 @@ object RetrofitBuilder {
             .build()
 
         val retrofitBuilder = Retrofit.Builder()
-            .baseUrl("https://coronavirus-19-api.herokuapp.com/")
+            .baseUrl(url)
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()

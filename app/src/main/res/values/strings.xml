@@ -6,4 +6,18 @@
     <string name="informasi_terkini_virus_corona_di_indonesia">Informasi terkini virus corona di Indonesia</string>
     <string name="pantau_covid_19_nindonesia">PANTAU COVID-19 \nINDONESIA</string>
     <string name="berikut_infomarsi_covid_19_hari_ini">Berikut infomarsi COVID-19 saat ini</string>
+    <string name="image">image</string>
+    <string name="positif">Positif</string>
+    <string name="orang_dalam_pemantauan_odp">ORANG DALAM PEMANTAUAN (ODP)</string>
+    <string name="proses_pemantauan">Proses Pemantauan</string>
+    <string name="selesai_pantau">Selesai Pantau</string>
+    <string name="total_pdp">Total PDP</string>
+    <string name="masih_dirawat">Masih Dirawat</string>
+    <string name="sudah_sembuh">Sudah Sembuh</string>
+    <string name="kasus_terkonfirmasi_covid_19">KASUS TERKONFIRMASI COVID-19</string>
+    <string name="total_positive">Total Positive</string>
+    <string name="sembuh">Sembuh</string>
+    <string name="meninggal">Meninggal</string>
+    <string name="dirawat">Dirawat</string>
+    <string name="pasien_dalam_pemantauan_pdp">PASIEN DALAM PEMANTAUAN (PDP)</string>
 </resources>

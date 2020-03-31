@@ -3,25 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/bottom_navigation"
-    app:startDestination="@id/menu_kasus">
+    app:startDestination="@id/menu_nasional">
 
     <fragment
-        android:id="@+id/menu_kasus"
-        android:name="id.alpine.coronainformation.ui.kasus_nasional.KasusFragment"
+        android:id="@+id/menu_nasional"
+        android:name="id.alpine.coronainformation.ui.kasus_nasional.NasionalFragment"
         android:label="Kasus"
-        tools:layout="@layout/fragment_kasus" />
+        tools:layout="@layout/fragment_negara" />
     <fragment
-        android:id="@+id/menu_informasi"
-        android:name="id.alpine.coronainformation.ui.kasus_daerah.InformasiFragment"
+        android:id="@+id/menu_daerah"
+        android:name="id.alpine.coronainformation.ui.kasus_daerah.DaerahFragment"
         android:label="Informasi"
-        tools:layout="@layout/fragment_informasi" />
+        tools:layout="@layout/fragment_daerah" />
     <fragment
-        android:id="@+id/menu_bantuan"
-        android:name="id.alpine.coronainformation.ui.informasi.BantuanFragment"
+        android:id="@+id/banyuwangi"
+        android:name="id.alpine.coronainformation.ui.banyuwangi.BanyuwangiFragment"
         android:label="Bantuan"
-        tools:layout="@layout/fragment_bantuan" />
+        tools:layout="@layout/fragment_banyuwangi" />
     <fragment
-        android:id="@+id/menu_about"
+        android:id="@+id/about"
         android:name="id.alpine.coronainformation.ui.about.AboutFragment"
         android:label="fragment_about"
         tools:layout="@layout/fragment_about" />

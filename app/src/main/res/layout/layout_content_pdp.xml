@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/_8sdp"
+    android:clipChildren="true"
+    app:cardCornerRadius="@dimen/_8sdp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:text="@string/pasien_dalam_pemantauan_pdp"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/_14ssp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_total_pdp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:text="0"
+            android:textColor="@android:color/holo_orange_light"
+            android:textSize="@dimen/_30ssp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/total_pdp"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/_12ssp" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/_8sdp">
+
+            <TextView
+                android:id="@+id/tv_masih_dirawat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="0"
+                android:textColor="@android:color/holo_orange_dark"
+                android:textSize="@dimen/_25ssp"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_sudah_sembuh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="0"
+                android:textColor="@android:color/holo_orange_dark"
+                android:textSize="@dimen/_25ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintGuide_percent="0.5"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/masih_dirawat"
+                app:layout_constraintEnd_toEndOf="@+id/tv_masih_dirawat"
+                app:layout_constraintStart_toStartOf="@+id/tv_masih_dirawat"
+                app:layout_constraintTop_toBottomOf="@+id/tv_masih_dirawat" />
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:text="@string/sudah_sembuh"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/tv_sudah_sembuh"
+                app:layout_constraintStart_toStartOf="@+id/tv_sudah_sembuh"
+                app:layout_constraintTop_toBottomOf="@+id/tv_sudah_sembuh"
+                app:layout_constraintVertical_bias="0.0" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>
