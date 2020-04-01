@@ -14,6 +14,7 @@ import id.alpine.coronainformation.repository.RepositoryNegara
 import kotlinx.android.synthetic.main.fragment_negara.*
 import kotlinx.android.synthetic.main.layout_content_kasus.*
 import kotlinx.android.synthetic.main.layout_content_laporan_terkini.*
+import kotlinx.android.synthetic.main.layout_no_connection.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.Default
 import kotlinx.coroutines.Dispatchers.Main
@@ -39,10 +40,7 @@ class NasionalFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val current = Calendar.getInstance().time
-        val formatter = SimpleDateFormat("dd-MM-YYYY HH:mm", Locale("ID"))
-        val formatted = formatter.format(current)
-        tv_tanggal_sekarang.text = "$formatted WIB "
+        showTanggal()
         initVIewModel()
     }
 
@@ -50,21 +48,29 @@ class NasionalFragment : Fragment() {
         val factory = NaisonalViewModelFactory(RepositoryNegara.instance)
         viewModel = ViewModelProvider(this, factory).get(NasionalViewModel::class.java).apply {
             viewState.observe(
-                viewLifecycleOwner,
-                androidx.lifecycle.Observer(this@NasionalFragment::handleState)
+                viewLifecycleOwner, androidx.lifecycle.Observer(this@NasionalFragment::handleState)
             )
-            getNegara("indonesia")
+            sr_negara.setOnRefreshListener {
+                showTanggal()
+                refresh("indonesia")
+            }
         }
     }
 
     private fun handleState(state: NasionalViewState?) {
         state?.let {
+            handleLoading(state.loading)
             state.data?.let { data -> showdata(data) }
-            state.error?.let { showToast(it.message) }
+            state.error?.let { handleError(it.message) }
+            state.message?.let { showToast(it) }
         }
     }
 
     private fun showdata(data: ResponseCountries) {
+
+        container_negara.visibility = View.VISIBLE
+        container_error.visibility = View.GONE
+
         updateTextView(data.cases!!, tv_kasus_dilaporkan)
         updateTextView(data.active!!, tv_dalam_perawatan)
         updateTextView(data.recovered!!, tv_jumlah_sembuh)
@@ -83,7 +89,24 @@ class NasionalFragment : Fragment() {
         }
     }
 
-    private fun showToast(text: String?) {
+    private fun handleLoading(state: Boolean) {
+        sr_negara.isRefreshing = state
+    }
+
+    private fun handleError(text: String?) {
+        container_negara.visibility = View.GONE
+        container_error.visibility = View.VISIBLE
+        tv_no_connection.text = text
+    }
+
+    private fun showToast(text: String) {
         Toast.makeText(activity, text, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun showTanggal() {
+        val current = Calendar.getInstance().time
+        val formatter = SimpleDateFormat("dd-MM-YYYY HH:mm", Locale("ID"))
+        val formatted = formatter.format(current)
+        tv_tanggal_sekarang.text = "$formatted WIB "
     }
 }

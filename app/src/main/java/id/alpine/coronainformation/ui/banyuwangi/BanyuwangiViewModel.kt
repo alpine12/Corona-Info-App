@@ -10,10 +10,14 @@ import kotlinx.coroutines.launch
 class BanyuwangiViewModel(private val repository: RepositoryBanyuwangi) : ViewModel() {
 
     private val _mViewState = MutableLiveData<BanyuwangiViewState>().apply {
-        value = BanyuwangiViewState(false)
+        value = BanyuwangiViewState(true)
     }
 
-    val _viewState: LiveData<BanyuwangiViewState> get() = _mViewState
+    val viewState: LiveData<BanyuwangiViewState> get() = _mViewState
+
+    init {
+        getData()
+    }
 
     fun getData() = viewModelScope.launch {
         try {

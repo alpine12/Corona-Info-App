@@ -10,10 +10,20 @@ import kotlinx.coroutines.launch
 class NasionalViewModel(private val repositoryNegara: RepositoryNegara) : ViewModel() {
 
     private val mViewState = MutableLiveData<NasionalViewState>().apply {
-        value = NasionalViewState(false)
+        value = NasionalViewState(true)
     }
 
     val viewState: LiveData<NasionalViewState> get() = mViewState
+
+    init {
+        getNegara("indonesia")
+    }
+
+    fun refresh(negara: String) = viewModelScope.launch {
+        val message = repositoryNegara.refresh(negara)
+        mViewState.value = mViewState.value?.copy(loading = false, message = message)
+        getNegara(negara)
+    }
 
     fun getNegara(negara: String) = viewModelScope.launch {
         try {

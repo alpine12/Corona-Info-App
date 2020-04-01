@@ -10,10 +10,14 @@ import kotlinx.coroutines.launch
 class DaerahVIewModel(private val repository: RepositoryDaerah) : ViewModel() {
 
     private val _mViewState = MutableLiveData<DaerahViewState>().apply {
-        value = DaerahViewState(false)
+        value = DaerahViewState(true)
     }
 
     val _viewState: LiveData<DaerahViewState> get() = _mViewState
+
+    init {
+        getDaerah()
+    }
 
     fun getDaerah() = viewModelScope.launch {
         try {

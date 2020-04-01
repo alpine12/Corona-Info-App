@@ -13,6 +13,16 @@ class RepositoryNegara internal constructor() : BaseRepository<NegaralDataStore>
         return response
     }
 
+    suspend fun refresh(negara: String): String {
+        return try {
+            val response = remoteDataStore?.getNegara(negara)
+            localDataStore?.addAll(response)
+            "Update"
+        } catch (e: Exception) {
+            "Gagal Update, Jaringan Bermasalah"
+        }
+    }
+
     companion object {
         val instance by lazy { RepositoryNegara() }
     }

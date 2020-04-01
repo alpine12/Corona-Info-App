@@ -39,7 +39,7 @@ class DaerahAdapter : RecyclerView.Adapter<DaerahAdapter.VH>() {
             itemView.tv_nama_daerah.text = data.attributes?.provinsi.toString()
             itemView.tv_positif.text = data.attributes?.kasusPosi.toString()
             itemView.tv_sembuh.text = data.attributes?.kasusSemb.toString()
-            itemView.tv_selesai_pantau.text = data.attributes?.kasusMeni.toString()
+            itemView.tv_meninggal.text = data.attributes?.kasusMeni.toString()
         }
     }
 

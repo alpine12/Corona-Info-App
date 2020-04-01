@@ -15,5 +15,5 @@
     <item
         android:id="@+id/about"
         android:icon="@drawable/ic_about"
-        android:title="About" />
+        android:title="Tentang" />
 </menu>

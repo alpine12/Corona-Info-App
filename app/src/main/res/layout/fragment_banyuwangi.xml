@@ -1,26 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/srl_banyuwangi"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:background="#fff"
     android:layout_height="match_parent"
     tools:context=".ui.banyuwangi.BanyuwangiFragment">
 
-    <ScrollView
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+        <include layout="@layout/layout_no_connection" />
 
-            <include layout="@layout/layout_content_odp" />
+        <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-            <include layout="@layout/layout_content_pdp" />
+            <LinearLayout
+                android:id="@+id/container_banyuwangi"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-            <include layout="@layout/layout_content_positive" />
-        </LinearLayout>
-    </ScrollView>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_8sdp"
+                    app:cardCornerRadius="@dimen/_8sdp">
 
-</FrameLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="@dimen/_8sdp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="DATA TERKINI COVID-19 DI BANYUWANGI"
+                            android:textAlignment="center"
+                            android:textColor="@android:color/black"
+                            android:textSize="@dimen/_25ssp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tv_last_update"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_4sdp"
+                            android:textAlignment="center"
+                            android:textSize="@dimen/_12ssp"
+                            android:textStyle="italic" />
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <include layout="@layout/layout_content_odp" />
+
+                <include layout="@layout/layout_content_pdp" />
+
+                <include layout="@layout/layout_content_positive" />
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </FrameLayout>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
