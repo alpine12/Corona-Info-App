@@ -5,5 +5,6 @@ import id.alpine.coronainformation.model.ResponseDaerah
 data class DaerahViewState(
     var loading: Boolean = false,
     var error: Exception? = null,
+    var message: String? = null,
     var data: MutableList<ResponseDaerah>? = null
 )

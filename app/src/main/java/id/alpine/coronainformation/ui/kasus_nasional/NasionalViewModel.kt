@@ -31,7 +31,12 @@ class NasionalViewModel(private val repositoryNegara: RepositoryNegara) : ViewMo
             val data = repositoryNegara.getNegara(negara)
             mViewState.value = mViewState.value?.copy(loading = false, error = null, data = data)
         } catch (e: Exception) {
-            mViewState.value = mViewState.value?.copy(loading = false, error = e, data = null)
+            mViewState.value = mViewState.value?.copy(
+                loading = false,
+                error = e,
+                data = null,
+                message = e.toString()
+            )
         }
     }
 }

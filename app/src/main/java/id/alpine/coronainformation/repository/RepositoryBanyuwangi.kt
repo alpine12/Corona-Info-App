@@ -14,6 +14,16 @@ class RepositoryBanyuwangi internal constructor() : BaseRepository<BanyuwangiDat
         return response
     }
 
+    suspend fun refresh(): String {
+        return try {
+            val response = remoteDataStore?.getData()
+            localDataStore?.addAll(response)
+            "Update"
+        } catch (e: Exception) {
+            "Gagal Update, Jaringan Bermasalah"
+        }
+    }
+
     companion object {
         val instance by lazy { RepositoryBanyuwangi() }
     }

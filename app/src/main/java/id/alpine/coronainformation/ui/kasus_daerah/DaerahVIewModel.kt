@@ -13,10 +13,17 @@ class DaerahVIewModel(private val repository: RepositoryDaerah) : ViewModel() {
         value = DaerahViewState(true)
     }
 
-    val _viewState: LiveData<DaerahViewState> get() = _mViewState
+    val viewState: LiveData<DaerahViewState> get() = _mViewState
 
     init {
         getDaerah()
+    }
+
+    fun refresh() = viewModelScope.launch {
+        val message = repository.refresh()
+        _mViewState.value = _mViewState.value?.copy(loading = false, message = message)
+        getDaerah()
+        _mViewState.value = _mViewState.value?.copy(loading = false, message = null)
     }
 
     fun getDaerah() = viewModelScope.launch {
@@ -24,7 +31,12 @@ class DaerahVIewModel(private val repository: RepositoryDaerah) : ViewModel() {
             val data = repository.getDaerah()
             _mViewState.value = _mViewState.value?.copy(loading = false, error = null, data = data)
         } catch (e: Exception) {
-            _mViewState.value = _mViewState.value?.copy(loading = false, error = e, data = null)
+            _mViewState.value = _mViewState.value?.copy(
+                loading = false,
+                error = e,
+                data = null,
+                message = e.toString()
+            )
         }
     }
 

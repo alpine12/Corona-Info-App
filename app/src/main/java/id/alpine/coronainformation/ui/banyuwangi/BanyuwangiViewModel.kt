@@ -19,12 +19,24 @@ class BanyuwangiViewModel(private val repository: RepositoryBanyuwangi) : ViewMo
         getData()
     }
 
+    fun refresh() = viewModelScope.launch {
+        val message = repository.refresh()
+        _mViewState.value = _mViewState.value?.copy(loading = false, message = message)
+        getData()
+        _mViewState.value = _mViewState.value?.copy(loading = false, message = null)
+    }
+
     fun getData() = viewModelScope.launch {
         try {
             val data = repository.getBanyuwangi()
             _mViewState.value = _mViewState.value?.copy(loading = false, error = null, data = data)
         } catch (e: Exception) {
-            _mViewState.value = _mViewState.value?.copy(loading = false, error = e, data = null)
+            _mViewState.value = _mViewState.value?.copy(
+                loading = false,
+                error = e,
+                data = null,
+                message = e.toString()
+            )
         }
 
     }

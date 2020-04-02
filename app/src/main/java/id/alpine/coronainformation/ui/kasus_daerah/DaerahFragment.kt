@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -36,8 +37,8 @@ class DaerahFragment : Fragment() {
 
         val factory = DaerahViewModelFactory(RepositoryDaerah.instance)
         val vm = ViewModelProvider(this, factory).get(DaerahVIewModel::class.java).apply {
-            _viewState.observe(viewLifecycleOwner, Observer(this@DaerahFragment::handleState))
-            srl_daerah.setOnRefreshListener { getDaerah() }
+            viewState.observe(viewLifecycleOwner, Observer(this@DaerahFragment::handleState))
+            srl_daerah.setOnRefreshListener { refresh() }
         }
     }
 
@@ -49,6 +50,9 @@ class DaerahFragment : Fragment() {
             }
             it.error?.let { err ->
                 handleError(err.toString())
+            }
+            it.message?.let {
+                showToast(it)
             }
         }
     }
@@ -67,6 +71,10 @@ class DaerahFragment : Fragment() {
         container_daerah.visibility = View.GONE
         container_error.visibility = View.VISIBLE
         tv_no_connection.text = text
+    }
+
+    private fun showToast(text: String) {
+        Toast.makeText(activity, text, Toast.LENGTH_SHORT).show()
     }
 
 }

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -35,7 +36,7 @@ class BanyuwangiFragment : Fragment() {
         val factory = BanyuwangiVIewModelFactory(RepositoryBanyuwangi.instance)
         val vm = ViewModelProvider(this, factory).get(BanyuwangiViewModel::class.java).apply {
             viewState.observe(viewLifecycleOwner, Observer(this@BanyuwangiFragment::handleState))
-            srl_banyuwangi.setOnRefreshListener { getData() }
+            srl_banyuwangi.setOnRefreshListener { refresh() }
         }
     }
 
@@ -47,6 +48,9 @@ class BanyuwangiFragment : Fragment() {
             }
             it.error?.let {
                 handleError(it.message.toString())
+            }
+            it.message?.let {
+                showToast(it)
             }
         }
     }
@@ -78,4 +82,7 @@ class BanyuwangiFragment : Fragment() {
         tv_no_connection.text = text
     }
 
+    private fun showToast(text: String) {
+        Toast.makeText(activity, text, Toast.LENGTH_SHORT).show()
+    }
 }

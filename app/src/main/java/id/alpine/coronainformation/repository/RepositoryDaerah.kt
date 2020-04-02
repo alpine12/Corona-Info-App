@@ -13,6 +13,16 @@ class RepositoryDaerah internal constructor() : BaseRepository<DaerahlDataStore>
         return response
     }
 
+    suspend fun refresh(): String {
+        return try {
+            val response = remoteDataStore?.getDaerah()
+            localDataStore?.addAll(response)
+            "Update"
+        } catch (e: Exception) {
+            "Gagal Update, Jaringan Bermasalah"
+        }
+    }
+
     companion object {
         val instance by lazy {
             RepositoryDaerah()
