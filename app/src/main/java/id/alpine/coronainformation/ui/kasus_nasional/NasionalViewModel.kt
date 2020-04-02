@@ -23,6 +23,7 @@ class NasionalViewModel(private val repositoryNegara: RepositoryNegara) : ViewMo
         val message = repositoryNegara.refresh(negara)
         mViewState.value = mViewState.value?.copy(loading = false, message = message)
         getNegara(negara)
+        mViewState.value = mViewState.value?.copy(loading = false, message = null)
     }
 
     fun getNegara(negara: String) = viewModelScope.launch {
