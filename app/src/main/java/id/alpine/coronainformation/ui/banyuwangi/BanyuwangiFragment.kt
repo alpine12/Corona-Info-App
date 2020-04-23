@@ -58,7 +58,7 @@ class BanyuwangiFragment : Fragment() {
     private fun showData(data: Data) {
         tv_total_odp.text = data.totalOdp
         tv_proses_pemantauan.text = data.odpProses
-        tv_meninggal.text = data.odpSelesai
+        tv_selesai_pantau.text = data.odpSelesai
         tv_total_pdp.text = data.totalPdp
         tv_masih_dirawat.text = data.pdpRawat
         tv_sudah_sembuh.text = data.pdpSembuh
