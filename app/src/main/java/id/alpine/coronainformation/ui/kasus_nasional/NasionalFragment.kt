@@ -15,11 +15,6 @@ import kotlinx.android.synthetic.main.fragment_negara.*
 import kotlinx.android.synthetic.main.layout_content_kasus.*
 import kotlinx.android.synthetic.main.layout_content_laporan_terkini.*
 import kotlinx.android.synthetic.main.layout_no_connection.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers.Default
-import kotlinx.coroutines.Dispatchers.Main
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -80,13 +75,7 @@ class NasionalFragment : Fragment() {
     }
 
     private fun updateTextView(count: Int, view: TextView) {
-        CoroutineScope(Default).launch {
-            for (i in 0..count) {
-                withContext(Main) {
-                    view.text = i.toString()
-                }
-            }
-        }
+        view.text = count.toString()
     }
 
     private fun handleLoading(state: Boolean) {

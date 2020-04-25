@@ -4,7 +4,7 @@ import id.alpine.coronainformation.model.ResponseCountries
 
 class NegaraLocalDataStore :
     NegaralDataStore {
-    private var caches = ResponseCountries()
+    private var caches = ResponseCountries("indonesia")
     override suspend fun getNegara(negara: String): ResponseCountries? =
         if (caches.cases != null) caches else null
 

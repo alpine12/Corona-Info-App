@@ -1,7 +1,12 @@
 package id.alpine.coronainformation.model
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity
 data class ResponseCountries(
-    val country: String? = null,
+    @PrimaryKey
+    val country: String,
     val recovered: Int? = null,
     val cases: Int? = null,
     val critical: Int? = null,

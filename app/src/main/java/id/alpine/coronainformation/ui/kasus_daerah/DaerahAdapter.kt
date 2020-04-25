@@ -36,10 +36,11 @@ class DaerahAdapter : RecyclerView.Adapter<DaerahAdapter.VH>() {
             get() = itemView
 
         fun bindItem(data: ResponseDaerah) {
-            itemView.tv_nama_daerah.text = data.attributes?.provinsi.toString()
-            itemView.tv_positif.text = data.attributes?.kasusPosi.toString()
-            itemView.tv_sembuh.text = data.attributes?.kasusSemb.toString()
-            itemView.tv_meninggal.text = data.attributes?.kasusMeni.toString()
+            val attributes = data.attributes
+            itemView.tv_nama_daerah.text = attributes?.provinsi.toString()
+            itemView.tv_positif.text = attributes?.kasusPosi.toString()
+            itemView.tv_sembuh.text = attributes?.kasusSemb.toString()
+            itemView.tv_meninggal.text = attributes?.kasusMeni.toString()
         }
     }
 
