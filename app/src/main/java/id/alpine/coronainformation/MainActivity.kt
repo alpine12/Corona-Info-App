@@ -15,9 +15,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setupBottomNav()
-
-//        val viewModel = ViewModelProvider(this).get(NasionalViewModel::class.java)
-//        viewModel.getNegara("indonesia")
     }
 
 

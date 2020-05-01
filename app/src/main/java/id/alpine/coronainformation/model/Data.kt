@@ -1,13 +1,14 @@
 package id.alpine.coronainformation.model
 
 import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
-@Entity
+@Entity(tableName = "data")
 data class Data(
-
+    @PrimaryKey
     @field:SerializedName("last_updated")
-    val lastUpdated: String? = null,
+    val lastUpdated: String,
 
     @field:SerializedName("covid_meninggal")
     val covidMeninggal: String? = null,

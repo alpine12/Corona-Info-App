@@ -13,6 +13,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun negaraDao(): NegaraDao
     abstract fun banyuwangiDao(): BanyuwangiDao
 
+
     companion object {
         private var instance: AppDatabase? = null
         fun getInstance(context: Context): AppDatabase {
@@ -24,5 +25,4 @@ abstract class AppDatabase : RoomDatabase() {
             return instance!!
         }
     }
-
 }

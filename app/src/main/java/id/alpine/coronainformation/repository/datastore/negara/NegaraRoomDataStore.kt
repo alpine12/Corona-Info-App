@@ -5,8 +5,8 @@ import id.alpine.coronainformation.model.ResponseCountries
 
 class NegaraRoomDataStore(private val negaraDao: NegaraDao) : NegaralDataStore {
     override suspend fun getNegara(negara: String): ResponseCountries? {
-        val response = negaraDao.getNegara() as ResponseCountries
-        return if (response.cases != null) response else null
+        val response = negaraDao.getNegara()
+        return if (response != null) response else null
     }
 
     override suspend fun addAll(data: ResponseCountries?) {

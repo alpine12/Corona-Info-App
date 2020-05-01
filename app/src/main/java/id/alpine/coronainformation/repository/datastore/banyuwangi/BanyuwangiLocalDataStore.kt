@@ -3,7 +3,7 @@ package id.alpine.coronainformation.repository.datastore.banyuwangi
 import id.alpine.coronainformation.model.Data
 
 class BanyuwangiLocalDataStore : BanyuwangiDataStore {
-    private var caches = Data()
+    private var caches = Data("1")
     override suspend fun getData(): Data? =
         if (caches.lastUpdated != null) caches else null
 

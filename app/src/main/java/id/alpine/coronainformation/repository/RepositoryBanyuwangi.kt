@@ -8,7 +8,6 @@ class RepositoryBanyuwangi internal constructor() : BaseRepository<BanyuwangiDat
     suspend fun getBanyuwangi(): Data? {
         val caches = localDataStore?.getData()
         if (caches != null) return caches
-
         val response = remoteDataStore?.getData()
         localDataStore?.addAll(response)
         return response

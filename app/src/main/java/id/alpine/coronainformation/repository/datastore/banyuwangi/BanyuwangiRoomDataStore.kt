@@ -6,12 +6,12 @@ import id.alpine.coronainformation.model.Data
 class BanyuwangiRoomDataStore(val banyuwangiDao: BanyuwangiDao) : BanyuwangiDataStore {
     override suspend fun getData(): Data? {
         val response = banyuwangiDao.getDaerah()
-        return response
+        return if (response != null) response else null
     }
 
     override suspend fun addAll(data: Data?) {
         data?.let {
-            banyuwangiDao.insertDaerah(data)
+            banyuwangiDao.insertDaerah(it)
         }
     }
 
