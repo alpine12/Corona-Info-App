@@ -9,8 +9,8 @@ import id.alpine.coronainformation.repository.RepositoryDaerah
 import id.alpine.coronainformation.repository.RepositoryNegara
 import id.alpine.coronainformation.repository.datastore.banyuwangi.BanyuwangiRemoteDataSotre
 import id.alpine.coronainformation.repository.datastore.banyuwangi.BanyuwangiRoomDataStore
-import id.alpine.coronainformation.repository.datastore.daerah.DaerahLocalDataStore
 import id.alpine.coronainformation.repository.datastore.daerah.DaerahRemoteDataStore
+import id.alpine.coronainformation.repository.datastore.daerah.DaerahRoomDataStore
 import id.alpine.coronainformation.repository.datastore.negara.NegaraRemoteDataStore
 import id.alpine.coronainformation.repository.datastore.negara.NegaraRoomDataStore
 
@@ -32,7 +32,10 @@ class BaseApplication : Application() {
         }
 
         RepositoryDaerah.instance.apply {
-            init(DaerahLocalDataStore(), DaerahRemoteDataStore(apiServiceDaerah))
+            init(
+                DaerahRoomDataStore(appDatabase.daerahDao()),
+                DaerahRemoteDataStore(apiServiceDaerah)
+            )
         }
 
         RepositoryBanyuwangi.instance.apply {
