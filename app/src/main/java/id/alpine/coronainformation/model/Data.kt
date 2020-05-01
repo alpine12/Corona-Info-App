@@ -1,7 +1,9 @@
 package id.alpine.coronainformation.model
 
+import androidx.room.Entity
 import com.google.gson.annotations.SerializedName
 
+@Entity
 data class Data(
 
     @field:SerializedName("last_updated")
