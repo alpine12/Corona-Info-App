@@ -17,10 +17,7 @@ import kotlin.random.Random
 class UpdateData(context: Context, workerParams: WorkerParameters) :
     CoroutineWorker(context, workerParams) {
     override suspend fun doWork(): Result {
-
-        println("WorkManager working ${getDtn()}")
         fecthData()
-
         return Result.success()
     }
 
@@ -47,7 +44,7 @@ class UpdateData(context: Context, workerParams: WorkerParameters) :
         val builder = NotificationCompat.Builder(applicationContext, Constant.CHANEL_ID)
             .setSmallIcon(R.mipmap.ic_bacteria)
             .setContentTitle("Update Informasi Covid-19")
-            .setContentText("Kasus hari ini ${negara!!.todayCases}")
+            .setContentText("Kasus hari ini ${negara!!.todayCases} , Update pada ${getDtn()}")
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
 
         with(NotificationManagerCompat.from(applicationContext)) {
