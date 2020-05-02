@@ -48,6 +48,13 @@ dependencies {
 
     implementation 'com.google.android.material:material:1.2.0-alpha06'
 
+    //easy preff
+    implementation 'com.pixplicity.easyprefs:library:1.9.0'
+
+    //workmanager
+    def work_version = "2.3.4"
+    implementation "androidx.work:work-runtime-ktx:$work_version"
+
     //room
     def room_version = "2.2.5"
     implementation "androidx.room:room-runtime:$room_version"

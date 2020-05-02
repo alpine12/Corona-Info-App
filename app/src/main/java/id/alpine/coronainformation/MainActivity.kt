@@ -5,7 +5,15 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
+import androidx.work.Constraints
+import androidx.work.NetworkType
+import androidx.work.PeriodicWorkRequest
+import androidx.work.WorkManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.pixplicity.easyprefs.library.Prefs
+import id.alpine.coronainformation.workmanager.UpdateData
+import java.util.concurrent.TimeUnit
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -15,6 +23,28 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setupBottomNav()
+
+        val firstOpen = Prefs.getBoolean("open", true)
+
+        if (firstOpen) {
+            workManager()
+            Prefs.putBoolean("open", false)
+        }
+    }
+
+    private fun workManager() {
+        val constrain = Constraints.Builder().apply {
+            setRequiresDeviceIdle(false)
+            setRequiredNetworkType(NetworkType.CONNECTED)
+            setRequiresCharging(false)
+        }.build()
+
+        val request = PeriodicWorkRequest.Builder(
+            UpdateData::class.java,
+            60,
+            TimeUnit.MINUTES
+        ).setConstraints(constrain).build()
+        WorkManager.getInstance(this).enqueue(request)
     }
 
 

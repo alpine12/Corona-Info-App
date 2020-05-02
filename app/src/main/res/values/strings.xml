@@ -21,4 +21,7 @@
     <string name="dirawat">Dirawat</string>
     <string name="pasien_dalam_pemantauan_pdp">PASIEN DALAM PEMANTAUAN (PDP)</string>
     <string name="himbauan">NB: Mohon maaf bila data kasus di Indonesia yang disajikan berbeda atau bisa jadi lebih terupdate daripada data internasional (Worldometers, WHO, dll), sebab data internasional akan mengupdate otomatis jika sudah mendapat data dari pemerintahan suatu negara</string>
+
+    <string name="chanel_name">Chanel Negara</string>
+    <string name="chanel_description">Notifikasi Untuk Negara</string>
 </resources>
