@@ -25,7 +25,6 @@ class MainActivity : AppCompatActivity() {
         setupBottomNav()
 
         val firstOpen = Prefs.getBoolean("open", true)
-
         if (firstOpen) {
             workManager()
             Prefs.putBoolean("open", false)

@@ -1,10 +1,13 @@
 package id.alpine.coronainformation.workmanager
 
+import android.app.PendingIntent
 import android.content.Context
+import android.content.Intent
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
+import id.alpine.coronainformation.MainActivity
 import id.alpine.coronainformation.R
 import id.alpine.coronainformation.database.AppDatabase
 import id.alpine.coronainformation.helper.Constant
@@ -41,11 +44,22 @@ class UpdateData(context: Context, workerParams: WorkerParameters) :
     }
 
     private fun showNotification(negara: ResponseCountries?) {
+
+        // Create an explicit intent for an Activity in your app
+        val intent = Intent(applicationContext, MainActivity::class.java).apply {
+            flags =
+                Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS
+        }
+        val pendingIntent: PendingIntent =
+            PendingIntent.getActivity(applicationContext, 0, intent, PendingIntent.FLAG_ONE_SHOT)
+
         val builder = NotificationCompat.Builder(applicationContext, Constant.CHANEL_ID)
             .setSmallIcon(R.mipmap.ic_bacteria)
             .setContentTitle("Update Informasi Covid-19")
-            .setContentText("Kasus hari ini ${negara!!.todayCases} , Update pada ${getDtn()}")
+            .setContentText("Kasus hari ini ${negara?.todayCases} , Update pada ${getDtn()}")
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .setContentIntent(pendingIntent)
+            .setAutoCancel(true)
 
         with(NotificationManagerCompat.from(applicationContext)) {
             notify(Random.nextInt(0, 100), builder.build())
