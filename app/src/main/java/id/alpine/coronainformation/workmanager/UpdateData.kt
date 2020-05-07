@@ -11,7 +11,9 @@ import id.alpine.coronainformation.MainActivity
 import id.alpine.coronainformation.R
 import id.alpine.coronainformation.database.AppDatabase
 import id.alpine.coronainformation.helper.Constant
+import id.alpine.coronainformation.model.Data
 import id.alpine.coronainformation.model.ResponseCountries
+import id.alpine.coronainformation.model.ResponseDaerah
 import id.alpine.coronainformation.network.RetrofitBuilder
 import java.text.SimpleDateFormat
 import java.util.*
@@ -31,16 +33,39 @@ class UpdateData(context: Context, workerParams: WorkerParameters) :
     }
 
     private suspend fun fecthData() {
+        val appDatabase = AppDatabase.getInstance(applicationContext)
         val responseNegara = RetrofitBuilder.apiService(Constant.URL_NEGARA).getNegara("indonesia")
-        val appDatabase = AppDatabase.getInstance(applicationContext).negaraDao()
-        val data = appDatabase.getNegara()
+        val responseDaerah = RetrofitBuilder.apiService(Constant.URL_DAERAH).getDaerah()
+        val responseBwx = RetrofitBuilder.apiService(Constant.URL_BANYUWANGI).getBanyuwangi()
+
+        //Negara
+        val dataNegara = appDatabase.negaraDao()
         if (responseNegara.isSuccessful) {
             val negara = responseNegara.body() as ResponseCountries
-            if (negara != data) {
+            if (negara != dataNegara.getNegara()) {
                 showNotification(negara)
-                appDatabase.insertNegara(negara)
+            }
+            dataNegara.insertNegara(negara)
+        }
+
+        //Daerah
+        val dataDaerah = appDatabase.daerahDao()
+        if (responseDaerah.isSuccessful) {
+            val daerah = responseDaerah.body() as MutableList<ResponseDaerah>
+            daerah.let {
+                for (data in it) {
+                    dataDaerah.insertDaerah(data.attributes!!)
+                }
             }
         }
+
+        //Bwx
+        val dataBwx = appDatabase.banyuwangiDao()
+        if (responseBwx.isSuccessful) {
+            val bwx = responseBwx.body()!!.data as Data
+            dataBwx.insertDaerah(bwx)
+        }
+
     }
 
     private fun showNotification(negara: ResponseCountries?) {

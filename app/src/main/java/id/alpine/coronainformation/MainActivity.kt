@@ -5,8 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
-import androidx.work.Constraints
-import androidx.work.NetworkType
+import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.PeriodicWorkRequest
 import androidx.work.WorkManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -32,18 +31,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun workManager() {
-        val constrain = Constraints.Builder().apply {
-            setRequiresDeviceIdle(false)
-            setRequiredNetworkType(NetworkType.CONNECTED)
-            setRequiresCharging(false)
-        }.build()
 
-        val request = PeriodicWorkRequest.Builder(
+        val update = PeriodicWorkRequest.Builder(
             UpdateData::class.java,
             60,
             TimeUnit.MINUTES
-        ).setConstraints(constrain).build()
-        WorkManager.getInstance(this).enqueue(request)
+        ).build()
+        WorkManager.getInstance(this)
+            .enqueueUniquePeriodicWork("Update", ExistingPeriodicWorkPolicy.REPLACE, update)
     }
 
 
